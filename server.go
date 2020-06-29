@@ -553,7 +553,9 @@ func createMessage(msg *outgoingMessage) *signalservice.DataMessage {
 	if msg.attachment != nil {
 		dm.Attachments = []*signalservice.AttachmentPointer{
 			{
-				Id:          &msg.attachment.id,
+				AttachmentIdentifier: &signalservice.AttachmentPointer_CdnId{
+					CdnId: msg.attachment.id,
+				},
 				ContentType: &msg.attachment.ct,
 				Key:         msg.attachment.keys[:],
 				Digest:      msg.attachment.digest[:],

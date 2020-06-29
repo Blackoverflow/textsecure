@@ -93,7 +93,7 @@ func uploadAttachment(r io.Reader, ct string) (*att, error) {
 var ErrInvalidMACForAttachment = errors.New("invalid MAC for attachment")
 
 func handleSingleAttachment(a *textsecure.AttachmentPointer) (*Attachment, error) {
-	loc, err := getAttachmentLocation(*a.Id)
+	loc, err := getAttachmentLocation(a.GetCdnId())
 	if err != nil {
 		return nil, err
 	}
